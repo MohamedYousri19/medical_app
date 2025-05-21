@@ -12,6 +12,7 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // commit
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
