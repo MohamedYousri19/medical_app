@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_app/core/routing/routes.dart';
 import 'package:medical_app/features/login/ui/screens/login_screen.dart';
