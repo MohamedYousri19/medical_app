@@ -18,7 +18,7 @@ class OnBoardingScreen extends StatelessWidget {
       body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding:  EdgeInsets.only(top: 30.h),
+              padding:  EdgeInsets.only(top: 30.h , right: 20.0.w , left: 20.0.w),
               child: Column(
                       children: [
                         const DocLogoAndName(),
@@ -42,7 +42,8 @@ class OnBoardingScreen extends StatelessWidget {
                       ],
                     ),
             ),
-          )),
+          )
+      ),
     );
   }
 }

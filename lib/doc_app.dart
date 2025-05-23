@@ -21,7 +21,7 @@ class DocApp extends StatelessWidget {
       ),
         debugShowMaterialGrid: false,
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routers.onBoardingScreen,
+        initialRoute: Routes.onBoardingScreen,
       )
     );
   }

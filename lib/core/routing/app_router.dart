@@ -9,10 +9,10 @@ class AppRouter {
     // final arguments = settings.arguments ;
 
     switch (settings.name) {
-      case Routers.onBoardingScreen:
+      case Routes.onBoardingScreen:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
 
-      case Routers.loginScreen:
+      case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 
       default:
