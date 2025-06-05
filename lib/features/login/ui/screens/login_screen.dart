@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         focusNode: focusNode,
                         hintText: 'Password',
                         isObscureText: isObscure,
-                        suffixIcon: GestureDetector(
+                        suffixIcon: InkWell(
                             onTap: () {
                               setState(() {
                                 isObscure = !isObscure;
