@@ -18,14 +18,14 @@ class OnBoardingScreen extends StatelessWidget {
       body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
-              padding:  EdgeInsets.only(top: 30.h , right: 20.0.w , left: 20.0.w),
+              padding:  EdgeInsets.only(top: 30.h , right: 10.0.w , left: 10.0.w),
               child: Column(
                       children: [
                         const DocLogoAndName(),
                         SizedBox(height: 30.h,),
                         const DoctorImageAndText(),
                         SizedBox(height: 10.h,),
-                        Padding(
+                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: 30.0.w),
                           child: Column(
                             children: [

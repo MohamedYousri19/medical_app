@@ -10,6 +10,10 @@ class AppTextFormField extends StatelessWidget {
 
   final InputBorder? enabledBorder;
 
+  final InputBorder? errorBorder;
+
+  final InputBorder? focusErrorBorder;
+
   final TextStyle? inputTextStyle;
 
   final TextStyle? hintTextStyle;
@@ -22,6 +26,10 @@ class AppTextFormField extends StatelessWidget {
 
   final FocusNode? focusNode;
 
+  final TextEditingController? controller;
+
+  final Function(String?) validator;
+
   const AppTextFormField(
       {super.key,
       this.contentPadding,
@@ -32,7 +40,11 @@ class AppTextFormField extends StatelessWidget {
       required this.hintText,
       this.isObscureText,
       this.suffixIcon,
-      this.focusNode});
+      this.focusNode,
+      this.controller,
+      required this.validator,
+      this.errorBorder,
+      this.focusErrorBorder});
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +61,10 @@ class AppTextFormField extends StatelessWidget {
             ),
       ),
       child: TextFormField(
+        validator: (value) {
+          return validator(value);
+        },
+        controller: controller,
         focusNode: focusNode,
         decoration: InputDecoration(
           isDense: true,
@@ -63,6 +79,14 @@ class AppTextFormField extends StatelessWidget {
               OutlineInputBorder(
                   borderSide:
                       BorderSide(color: ColorsManager.lightGray, width: 1.3.w),
+                  borderRadius: BorderRadius.circular(16.0)),
+          errorBorder: errorBorder ??
+              OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: 1.3.w),
+                  borderRadius: BorderRadius.circular(16.0)),
+          focusedErrorBorder: focusErrorBorder ??
+              OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red, width: 1.3.w),
                   borderRadius: BorderRadius.circular(16.0)),
           hintText: hintText,
           hintStyle: hintTextStyle ?? TextStyles.font14LightGrayRegular,
