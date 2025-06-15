@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:medical_app/features/login/data/repos/login_repo.dart';
 import 'package:medical_app/features/login/logic/login_cubit.dart';
 
+import '../../features/sign_up/data/repos/sign_up_repo.dart';
+import '../../features/sign_up/logic/sign_up_cubit.dart';
 import '../networking/api_services.dart';
 import '../networking/dio_factory.dart';
 
@@ -14,5 +16,9 @@ Future<void> setUpGetIt() async{
 
   // login
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-  getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+
+  // signup
+  getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
+  getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
 }

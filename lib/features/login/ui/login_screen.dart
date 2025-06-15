@@ -7,7 +7,6 @@ import 'package:medical_app/features/login/ui/widgets/email_and_password.dart';
 import 'package:medical_app/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:medical_app/features/login/ui/widgets/terms_and_conditions_text.dart';
 import '../../../core/theming/styles.dart';
-import '../data/models/login_request_body.dart';
 import '../logic/login_cubit.dart';
 import 'widgets/dont_have_account_text.dart';
 
@@ -79,11 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void validateThenDoLogin(BuildContext context) {
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginStates(LoginRequestBody(
-          email: context.read<LoginCubit>().emailController.text,
-          password: context.read<LoginCubit>().passwordController.text
-      )
-      );
+      context.read<LoginCubit>().emitLoginStates();
     }
   }
 }
