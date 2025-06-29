@@ -15,25 +15,24 @@ class LoginBlocListener extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listenWhen: (previous, current) =>
-      current is Loading || current is Error || current is Success,
+      current is LoginLoadingState || current is LoginErrorState || current is LoginSuccessState,
       listener: (context, state) {
-        state.whenOrNull(
-            loading: () {
-              showDialog(
-                  context: context,
-                  builder: (context) => Center(
-                    child: CircularProgressIndicator(
-                      color: ColorsManager.mainBlue,
-                    ),
-                  ));
-            },
-            success: (loginResponse) {
-              context.pop();
-              context.pushNamedAndRemoveAll(Routes.homeScreen);
-            },
-            error: (error) {
-              setupErrorState(context, error);
-            });
+        if (state is LoginLoadingState) {
+          showDialog(
+              context: context,
+              builder: (context) => Center(
+                child: CircularProgressIndicator(
+                  color: ColorsManager.mainBlue,
+                ),
+              ));
+        }
+        if (state is LoginSuccessState) {
+          context.pop();
+          context.pushNamedAndRemoveAll(Routes.homeScreen);
+        }
+        if (state is LoginErrorState) {
+          setupErrorState(context, state.error);
+        }
       },
       child: SizedBox.shrink(),
     );

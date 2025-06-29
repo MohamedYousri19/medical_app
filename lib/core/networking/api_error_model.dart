@@ -7,7 +7,7 @@ class ApiErrorModel {
   final int? code;
 
   ApiErrorModel({
-    required this.message,
+    this.message,
     this.code,
   });
 

@@ -1,12 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:medical_app/features/sign_up/data/models/sign_up_response.dart';
 
-part 'sign_up_states.freezed.dart';
+sealed class SignUpState {}
 
-@freezed
-class SignupState<T> with _$SignupState<T> {
-  const factory SignupState.initial() = _Initial;
+final class SignUpInitial extends SignUpState {}
 
-  const factory SignupState.loading() = SignupLoading;
-  const factory SignupState.success(T data) = SignupSuccess<T>;
-  const factory SignupState.error({required String error}) = SignupError;
+final class SignUpLoadingState extends SignUpState {}
+final class SignUpSuccessState extends SignUpState {
+  final SignupResponse signupResponse ;
+  SignUpSuccessState({required this.signupResponse});
+}
+final class SignUpErrorState extends SignUpState {
+  final String error ;
+  SignUpErrorState({required this.error});
 }

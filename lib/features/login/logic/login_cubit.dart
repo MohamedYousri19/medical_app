@@ -1,28 +1,37 @@
 import 'package:flutter/cupertino.dart';
+import 'package:medical_app/core/networking/dio_factory.dart';
 import 'package:medical_app/features/login/data/models/login_request_body.dart';
 import 'package:medical_app/features/login/logic/login_state.dart';
+import '../../../core/helpers/constants.dart';
+import '../../../core/helpers/shared_pref.dart';
 import '../data/repos/login_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;
 
-  LoginCubit(this._loginRepo) : super(LoginState.initial());
+  LoginCubit(this._loginRepo) : super(LoginInitial());
 
   final formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   void emitLoginStates() async {
-    emit(const LoginState.loading());
+    emit(LoginLoadingState());
     final response = await _loginRepo.login(
       LoginRequestBody(
           email: emailController.text, password: passwordController.text),
     );
-    response.when(success: (loginResponse) {
-      emit(LoginState.success(loginResponse));
+    response.when(success: (loginResponse) async {
+      await saveToken(loginResponse.userData!.token ?? '');
+      emit(LoginSuccessState(loginResponse:loginResponse));
     }, failure: (error) {
-      emit(LoginState.error(error: error.apiErrorModel.message ?? ''));
+      emit(LoginErrorState(error: error.apiErrorModel.message ?? ''));
     });
+  }
+
+  Future<void> saveToken(String token) async {
+    await SharedPrefHelper.setSecuredString(SharedPreferenceKeys.token, token);
+    DioFactory.setTokenIntoHeaderAfterLogin(token) ;
   }
 }

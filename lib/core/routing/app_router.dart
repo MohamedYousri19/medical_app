@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medical_app/core/di/dependency_injection.dart';
 import 'package:medical_app/core/routing/routes.dart';
+import 'package:medical_app/features/home/logic/home_cubit.dart';
 import 'package:medical_app/features/login/ui/login_screen.dart';
 import '../../features/home/ui/home_screen.dart';
 import '../../features/login/logic/login_cubit.dart';
@@ -26,11 +27,13 @@ class AppRouter {
       case Routes.signUpScreen:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                create: (BuildContext context) => getIt.get<SignupCubit >(),
+                create: (BuildContext context) => getIt.get<SignupCubit>(),
                 child: const SignupScreen()));
 
       case Routes.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) =>BlocProvider(
+            create: (BuildContext context) => getIt.get<HomeCubit>()..getSpecializations(),
+            child: const HomeScreen()));
 
       default:
         return MaterialPageRoute(
