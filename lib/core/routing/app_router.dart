@@ -4,6 +4,8 @@ import 'package:medical_app/core/di/dependency_injection.dart';
 import 'package:medical_app/core/routing/routes.dart';
 import 'package:medical_app/features/home/logic/home_cubit.dart';
 import 'package:medical_app/features/login/ui/login_screen.dart';
+import 'package:medical_app/features/search/logic/search_cubit.dart';
+import 'package:medical_app/features/search/ui/search_screen.dart';
 import '../../features/home/ui/home_screen.dart';
 import '../../features/layout/logic/layout_cubit.dart';
 import '../../features/layout/ui/layout_screen.dart';
@@ -42,6 +44,11 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) =>BlocProvider(
             create: (BuildContext context) => getIt.get<HomeCubit>()..getSpecializations(),
             child: const HomeScreen()));
+
+      case Routes.searchScreen:
+        return MaterialPageRoute(builder: (_) =>BlocProvider(
+            create: (BuildContext context) => getIt.get<SearchCubit>()..getAllDoctors(),
+            child: const SearchScreen()));
 
       default:
         return MaterialPageRoute(

@@ -20,3 +20,4 @@ class DoctorsListView extends StatelessWidget {
     );
   }
 }
+

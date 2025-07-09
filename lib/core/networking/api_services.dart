@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:medical_app/core/networking/api_constants.dart';
 import 'package:medical_app/features/login/data/models/login_response.dart';
+import 'package:medical_app/features/search/data/models/doctor_details.dart';
 import 'package:medical_app/features/sign_up/data/models/sign_up_request_body.dart';
 import 'package:medical_app/features/sign_up/data/models/sign_up_response.dart';
 import 'package:retrofit/error_logger.dart';
@@ -24,5 +25,8 @@ abstract class ApiServices {
   Future<SignupResponse> signup(
     @Body() SignupRequestBody signupRequestBody,
   );
+  
+  @GET(ApiConstants.allDoctors)
+  Future<DoctorDetails> getAllDoctors();
 
 }

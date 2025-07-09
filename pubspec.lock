@@ -98,7 +98,7 @@ packages:
     source: hosted
     version: "2.4.4"
   build_runner:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: build_runner
       sha256: "058fe9dce1de7d69c4b84fada934df3e0153dd000758c4d65964d0166779aa99"
@@ -438,7 +438,7 @@ packages:
     source: sdk
     version: "0.0.0"
   freezed:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: freezed
       sha256: "6022db4c7bfa626841b2a10f34dd1e1b68e8f8f9650db6112dcdeeca45ca793c"
@@ -933,6 +933,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.2"
+  skeletonizer:
+    dependency: "direct main"
+    description:
+      name: skeletonizer
+      sha256: "0dcacc51c144af4edaf37672072156f49e47036becbc394d7c51850c5c1e884b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.3"
   sky_engine:
     dependency: transitive
     description: flutter

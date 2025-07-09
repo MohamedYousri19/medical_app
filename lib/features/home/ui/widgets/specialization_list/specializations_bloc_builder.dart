@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/helpers/spacing.dart';
 import '../../../logic/home_cubit.dart';
 import '../../../logic/home_state.dart';
@@ -19,18 +18,16 @@ class SpecializationsBlocBuilder extends StatelessWidget {
           current is SpecializationsSuccess ||
           current is SpecializationsError,
       builder: (context, state) {
-        return state.maybeWhen(
-            specializationsLoading: () {
-              return setupLoading();
-            },
-            specializationsSuccess: (specializationDataList) {
-              var specializationsList = specializationDataList;
-              return setupSuccess(specializationsList);
-            },
-            specializationsError: (errorHandler) => setupError(),
-            orElse: () {
-              return const SizedBox.shrink();
-            });
+        if (state is SpecializationsLoading) {
+          return setupLoading();
+        }
+        if (state is SpecializationsSuccess) {
+          return setupSuccess(state.specializationDataList);
+        }
+        if (state is SpecializationsError) {
+          return setupError();
+        }
+        return const SizedBox.shrink();
       },
     );
   }

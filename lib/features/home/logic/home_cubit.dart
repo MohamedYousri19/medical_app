@@ -6,12 +6,12 @@ import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
-  HomeCubit(this._homeRepo) : super(const HomeState.initial());
+  HomeCubit(this._homeRepo) : super(HomeInitial());
 
   List<SpecializationsData?>? specializationsList = [];
 
   void getSpecializations() async {
-    emit(const HomeState.specializationsLoading());
+    emit(SpecializationsLoading());
     final response = await _homeRepo.getSpecialization();
     response.when(
       success: (specializationsResponseModel) {
@@ -21,11 +21,11 @@ class HomeCubit extends Cubit<HomeState> {
         // getting the doctors list for the first specialization by default.
         getDoctorsList(specializationId: specializationsList?.first?.id);
 
-        emit(HomeState.specializationsSuccess(
+        emit(SpecializationsSuccess(
             specializationsResponseModel.specializationDataList));
       },
       failure: (errorHandler) {
-        emit(HomeState.specializationsError(errorHandler));
+        emit(SpecializationsError(errorHandler));
       },
     );
   }
@@ -35,9 +35,9 @@ class HomeCubit extends Cubit<HomeState> {
     getDoctorsListBySpecializationId(specializationId);
 
     if (doctorsList!.isNotEmpty) {
-      emit(HomeState.doctorsSuccess(doctorsList));
+      emit(DoctorsSuccess(doctorsList));
     } else {
-      emit(HomeState.doctorsError(ErrorHandler.handle('No doctors found')));
+      emit(DoctorsError(ErrorHandler.handle('No doctors found')));
     }
   }
 

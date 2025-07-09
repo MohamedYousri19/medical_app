@@ -1,21 +1,24 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../core/networking/api_error_handler.dart';
+
+import 'package:medical_app/core/networking/api_error_handler.dart';
 import '../data/models/specializations_response_model.dart';
 
-part 'home_state.freezed.dart';
+sealed class HomeState{}
 
-@freezed
-class HomeState with _$HomeState {
-  const factory HomeState.initial() = _Initial;
-
-  // Specializations
-  const factory HomeState.specializationsLoading() = SpecializationsLoading;
-  const factory HomeState.specializationsSuccess(List<SpecializationsData?>? specializationDataList) = SpecializationsSuccess;
-  const factory HomeState.specializationsError(ErrorHandler errorHandler) =
-  SpecializationsError;
-
-  // Doctors
-  const factory HomeState.doctorsSuccess(List<Doctors?>? doctorsList) = DoctorsSuccess;
-  const factory HomeState.doctorsError(ErrorHandler errorHandler) =
-  DoctorsError;
+final class HomeInitial extends HomeState {}
+final class SpecializationsLoading extends HomeState {}
+final class SpecializationsSuccess extends HomeState {
+  final List<SpecializationsData?>? specializationDataList;
+  SpecializationsSuccess(this.specializationDataList);
+}
+final class SpecializationsError extends HomeState {
+  final ErrorHandler errorHandler;
+  SpecializationsError(this.errorHandler);
+}
+final class DoctorsSuccess extends HomeState {
+  final List<Doctors?>? doctorsList;
+  DoctorsSuccess(this.doctorsList);
+}
+final class DoctorsError extends HomeState {
+  final ErrorHandler errorHandler;
+  DoctorsError(this.errorHandler);
 }
