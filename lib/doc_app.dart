@@ -4,8 +4,6 @@ import 'package:medical_app/core/routing/app_router.dart';
 import 'package:medical_app/core/routing/routes.dart';
 import 'package:medical_app/core/theming/colors.dart';
 
-import 'core/helpers/constants.dart';
-
 class DocApp extends StatelessWidget {
   final AppRouter appRouter ;
   const DocApp({super.key, required this.appRouter});
@@ -23,7 +21,7 @@ class DocApp extends StatelessWidget {
       ),
         debugShowMaterialGrid: false,
         onGenerateRoute:  appRouter.generateRoute,
-        initialRoute: isLoggedInUser ? Routes.homeScreen  : Routes.onBoardingScreen,
+        initialRoute: Routes.loginScreen,
       )
     );
   }

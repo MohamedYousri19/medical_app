@@ -31,22 +31,22 @@ class SpecialityListViewItem extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: CircleAvatar(
-              radius: 35,
+              radius: 28,
               backgroundColor: ColorsManager.lightBlue,
               child: Image.asset(
                   'assets/images/doctor_Icon.png',
-                height: 52.h,
-                width: 52.w,
+                height: 42.h,
+                width: 42.w,
               )
             ),
           )
               : CircleAvatar(
-            radius: 35,
+            radius: 28,
             backgroundColor: ColorsManager.lightBlue,
             child: Image.asset(
               'assets/images/doctor_Icon.png',
-              height: 50.h,
-              width: 50.w,
+              height: 40.h,
+              width: 40.w,
             )
           ),
           verticalSpace(8),
